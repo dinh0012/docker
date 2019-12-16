@@ -1,0 +1,6 @@
+<ruleset name="PSR2 Custom Standard">
+<description>Customization PSR2 coding-conventions</description>
+    <!-- PSR-2 -->
+    <rule ref="PSR2">
+    </rule>
+</ruleset>

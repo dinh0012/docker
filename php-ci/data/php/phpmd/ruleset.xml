@@ -1,0 +1,53 @@
+<ruleset name="PHPMD Custom rule set"
+    xmlns="http://pmd.sf.net/ruleset/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
+        http://pmd.sf.net/ruleset_xml_schema.xsd"
+    xsi:noNamespaceSchemaLocation="
+        http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+    <!-- クリーンなコードかのチェック -->
+    <rule ref="rulesets/cleancode.xml">
+        <!-- elseを一切使えなくなるので除外 -->
+        <exclude name="ElseExpression" />
+        <!-- 静的メソッドの呼び出しができなくなるので除外 -->
+        <exclude name="StaticAccess" />
+    </rule>
+
+    <!-- コードの複雑さのチェック -->
+    <rule ref="rulesets/codesize.xml">
+        <!-- モデルクラスでのメソッド数は許容したいので除外 -->
+        <exclude name="TooManyMethods" />
+        <exclude name="TooManyPublicMethods" />
+    </rule>
+
+    <!-- 命名規則のチェック -->
+    <rule ref="rulesets/controversial.xml" />
+
+    <!-- 設計のチェック -->
+    <rule ref="rulesets/design.xml">
+        <!-- モデルクラスによる継承が大量に発生するので除外 -->
+        <exclude name="NumberOfChildren" />
+    </rule>
+
+    <!-- 変数や関数の名称のチェック -->
+    <rule ref="rulesets/naming.xml">
+        <!-- 変数名の最低文字数を3から2に変更 -->
+        <exclude name="ShortVariable" />
+        <!-- 変数名の最大文字数を20から35に変更 -->
+        <exclude name="LongVariable" />
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="minimum" description="Minimum length for a variable, property or parameter name" value="2"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum" description="The variable length reporting threshold" value="35"/>
+        </properties>
+    </rule>
+
+    <!-- 使われていない要素のチェック -->
+    <rule ref="rulesets/unusedcode.xml" />
+</ruleset>

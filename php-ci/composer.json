@@ -1,0 +1,28 @@
+{
+    "name": "project-ci",
+    "description": "Project CI library",
+    "version": "0.0.1",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.1.0",
+        "phpmd/phpmd": "dev-master",
+        "sebastian/phpcpd": "4.*",
+        "squizlabs/php_codesniffer": "3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pci\\CI\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test"
+        }
+    },
+    "config": {
+        "bin-dir": "bin",
+        "vendor-dir": "var/composer/vendor",
+        "store-auths": true
+    }
+}
