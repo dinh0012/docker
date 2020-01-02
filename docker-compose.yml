@@ -12,6 +12,7 @@ services:
     ports:
       - "${IP_SERVER}:80:80"
     command: nginx -g 'daemon off;'
+
   php:
     build: ./php
     image: php
@@ -31,18 +32,28 @@ services:
       - DB_NAME=${DB_NAME}
       - REDIS_HOST=${DOMAIN_REDIS}
       - REDIS_PORT=${REDIS_PORT}
+      - MEMCACHE_HOST=${MEMCACHE_HOST}
       - MODE=DEV
     depends_on:
       - database
       - redis
+      - memcached
     links:
       - database:${DOMAIN_DB}
       - redis:${IP_REDIS}
+      - memcached:${DOMAIN_MEMCACHE}
+
   redis:
     image: redis:3.2.9-alpine
     container_name: "${APP_NAME}_redis"
     ports:
       - "${IP_REDIS}:6379:6379"
+
+  memcached:
+    image: 'memcached:1.5.20-alpine'
+    container_name: ${APP_NAME}_memcached
+    ports:
+      - "${MEMCACHE_PORT}:${MEMCACHE_PORT_DOCKER}"
 networks:
   default:
     external:
