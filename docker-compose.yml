@@ -6,6 +6,7 @@ services:
     volumes:
       - ./nginx:/nginx/
       - ./nginx/conf/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/var/www/src/
       - /etc/localtime:/etc/localtime:ro #localtime
     depends_on:
       - php
